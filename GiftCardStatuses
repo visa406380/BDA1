@@ -1,0 +1,8 @@
+@startuml
+
+[New] - [Nominated] 
+[Nominated] - [Expired]
+[Nominated] - [Active]
+[Active] - [Expired]
+
+@enduml
