@@ -1,0 +1,22 @@
+@startuml
+==Card Activation==
+
+Customer -> MerchantWeb: Starts activation process, enters card number, activation code
+
+MerchantWeb -> MerchantBO: Validate card numberby sending POST Card{id} request
+MerchantBO -> MerchantBO: Validate card number, activation code
+MerchantBO --> MerchantWeb: POST Card{id} response 
+MerchantWeb --> Customer: Display webpage with name and phone number fields
+Customer -> MerchantWeb: Fill name and phone number fields
+MerchantWeb -> MerchantBO: POST CardActivation request
+
+MerchantBO -> Customer: Sends OTP
+MerchantBO --> MerchantWeb: POST CardActivation responce
+MerchantWeb -> Customer: OTP entering page
+Customer --> MerchantWeb: OTP enter
+MerchantWeb -> MerchantBO: OTP Validation
+MerchantBO -> MerchantBO: OTP Validation
+MerchantBO --> MerchantWeb: OTP Validation response
+MerchantWeb --> Customer: OTP Validation response with card id, status and monination
+
+@enduml
