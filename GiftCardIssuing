@@ -1,0 +1,6 @@
+@startuml
+Customer -> Merchant: Order GiftCard with the defined nomination
+Merchant -> MerchantBO: POST Card Request with nominated amount
+MerchantBO --> Merchant: POST Card Response with nominated amount, id, status
+Merchant -> Customer: GiftCard number, nominated amount, status, further instructions
+@enduml
