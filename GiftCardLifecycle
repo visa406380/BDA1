@@ -1,0 +1,19 @@
+@startuml
+|Store BO|
+start
+:Card issued;
+:Card dispensed;
+|Store Outlet|
+:Card nominated;
+:Card selled;
+|Buyer|
+:receive card;
+:present card;
+|Customer|
+:Activate card;
+|Store Outlet|
+:Payment;
+|Store BO|
+:Expiration;
+stop
+@enduml
