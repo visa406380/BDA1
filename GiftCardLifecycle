@@ -1,19 +1,23 @@
 @startuml
-|Store BO|
+|BlackHawk|
 start
 :Card issued;
-:Card dispensed;
 |Store Outlet|
-:Card nominated;
-:Card selled;
-|Buyer|
+:Card bought;
+|BlackHawk|
+:Card nominated and selled;
+
+
+|Store Outlet|
+
+|Customer|
 :receive card;
 :present card;
-|Customer|
-:Activate card;
+
 |Store Outlet|
 :Payment;
-|Store BO|
-:Expiration;
+|Clutch|
+:Payment processing;
+|Store Outlet|
 stop
 @enduml
