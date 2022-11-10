@@ -1,0 +1,19 @@
+@startuml
+|Checkout|
+start
+:GC number;
+:PIN;
+:Click "balance check" button;
+|Clutch|
+:Balance check;
+|Checkout|
+:Select amount to charge;
+|Clutch|
+:Authorisation;
+|Checkout|
+:Click "pay";
+|Clutch|
+:Capture;
+|Checkout|
+stop
+@enduml
