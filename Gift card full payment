@@ -1,0 +1,28 @@
+@startuml
+==Cart==
+
+Customer -> Store: clicks "Proceed to payment"
+Store -> Customer: Redirects Customer to checkout page
+
+== payment ==
+Customer -> Store: Select "Apply Gift Card
+Store --> Customer: Open "Enter Gift Card" window
+Customer -> Store: Enters Gift card number, PIN, clicks "Apply"
+
+Store -> Clutch: Check balance request
+Clutch -> Clutch: Validate card number, PIN, balance
+Clutch --> Store: Check balance response
+Store --> Customer: Return remaining balance  
+
+Customer -> Store: Click "Proceed payment" 
+Store -> Clutch: Authorisation request 
+Clutch -> Clutch: Validate card number, PIN, balance
+Clutch --> Store: Authorisation response
+Store --> Customer: Return authorisation result
+
+Customer -> Store: Click "Complete payment"
+Store -> Clutch: Capture request 
+Clutch -> Clutch: Validate card number, PIN, balance
+Clutch --> Store: Capture  response
+Store --> Customer: Return Capture result
+@end
