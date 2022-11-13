@@ -9,8 +9,10 @@ Customer -> Store: Select "Apply Gift Card
 Store --> Customer: Open "Enter Gift Card" window
 Customer -> Store: Enters Gift card number, PIN, clicks "Apply"
 
+Store -> Store: Check card batch 
+
 Store -> Clutch: Check balance request
-Clutch -> Clutch: Validate card number, PIN, balance
+Clutch -> Clutch: Validate  balance
 Clutch --> Store: Check balance response
 Store --> Customer: Return remaining balance  
 
