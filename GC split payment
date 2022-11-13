@@ -20,6 +20,7 @@ Customer -> Store: Click "Proceed payment"
 Store -> Clutch: Authorisation request 
 Clutch -> Clutch: Validate card number, PIN, balance
 Clutch --> Store: Authorisation response
+Store -> Store: Logs transaction
 Store --> Customer: Return authorisation result
 
 Customer -> Store: Add payment method "Bank card" 
@@ -39,6 +40,7 @@ Clutch -> Clutch: Validate card number, PIN, balance
 Store -> PSP: Capture request
 PSP --> Store: Capture response
 Clutch --> Store: Capture  response
+Store -> Store: Logs transaction
 Store -> Store: Check and log capture results
 Store --> Customer: Return Capture result
 @end
