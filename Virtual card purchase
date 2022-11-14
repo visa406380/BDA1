@@ -1,0 +1,10 @@
+@startuml
+Customer -> Store: Order GiftCard with the defined nomination
+Store -> BlackHawk: Request GC with amount, address and name
+
+BlackHawk --> Store: Response GC
+Store --> Customer: "GC sent to email" message
+
+BlackHawk -> Customer: Send email with GC number, PIN
+
+@enduml
