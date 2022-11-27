@@ -35,13 +35,22 @@ PSP --> Store: Response payment authorisation
 Store --> Customer: Provide payment authorisation responce
 
 Customer -> Store: Click "Complete payment"
-Store -> Clutch: Capture request 
-Clutch -> Clutch: Validate card number, PIN, balance
-Store -> PSP: Capture request
-PSP --> Store: Capture response
-Clutch --> Store: Capture  response
+Store -> Oracle: Process items to delivery
+Store -> Oracle: GC Capture request 
+
+Oracle -> Oracle: Process delivery
+Oracle -> Clutch: GC Capture request
+Clutch -> Clutch: Validate card number, (PIN), balance
+Store -> Oracle: Bank Card Capture request 
+Oracle -> PSP: Bank Card Capture request
+
+PSP --> Oracle: Bank Card Capture response
+Clutch --> Oracle: GC Capture  response
+
+Oracle --> Store: Capture responses
+
 Store -> Store: Logs transaction
 Store -> Store: Check and log capture results
-Store --> Customer: Return Capture result
+
 @end
 
