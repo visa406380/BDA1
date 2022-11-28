@@ -23,8 +23,11 @@ Clutch --> Store: Authorisation response
 Store --> Customer: Return authorisation result
 
 Customer -> Store: Click "Complete payment"
-Store -> Clutch: Capture request 
+Store -> Oracle: Send items to delivery
+Oracle -> Oracle: process delivery
+Oracle -> Clutch: Capture request
 Clutch -> Clutch: Validate card number, PIN, balance
-Clutch --> Store: Capture  response
-Store --> Customer: Return Capture result
+Clutch --> Oracle: Capture  response
+Oracle --> Store: Capture response
+Store -> Store: Log Capture result
 @end
