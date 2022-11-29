@@ -1,10 +1,29 @@
 @startuml
+
+== Payment ==
 Customer -> Store: Order GiftCard with the defined nomination
-Store -> BlackHawk: Request GC with amount, address and name
 
-BlackHawk --> Store: Response GC
-Store --> Customer: "GC sent to delivery" message
+Store -> CardConnect: full amount authorization
+CardConnect --> Store: Response auth request
 
-BlackHawk -> Customer: Ship GC, PIN
+Store -> CardConnect: Payment completion 
+CardConnect --> Store: Completion response
+
+== Card order ==
+
+Store -> Oracle: order export with fund captured indicator
+Oracle --> Store: export successfully made
+
+Store -> Blackhawk: card issuing request with amount, address customer name
+
+Blackhawk -> Blackhawk: Selects card number from list and sets PIN
+Blackhawk -> Clutch: Send card data card number, PIN and nomination amount
+Clutch --> Blackhawk: Card data response
+
+Blackhawk --> Store: card issuing response
+
+Store --> Customer: "GC was shipped" message
+
+Blackhawk -> Customer: Ships Gift card with PIN
 
 @enduml
