@@ -9,47 +9,31 @@ Customer -> Store: Select "Apply Gift Card
 Store --> Customer: Open "Enter Gift Card" window
 Customer -> Store: Enters Gift card number, PIN, clicks "Apply"
 
-Store -> Store: Check card batch
+Store -> Store: Check card batch 
 
-Store -> Clutch: Check balance request
-Clutch -> Clutch: Validate card number, balance
+Store -> Clutch: Check balance request (SearchRequest)
+Clutch -> Clutch: Validate  balance
 Clutch --> Store: Check balance response
-Store --> Customer: Return remaining balance  
+Store --> Customer: Return remaining balance, outstanding card balance
+
+Customer -> Store: Selects "Apply Bank card"
+Store -> Store: Calculate the remaining amount
+Store --> Customer: Payment form
+Customer -> Store: fill Bank Card data
+Store -> CardConnect: send $0 Auth request
+CardConnect --> Store: Auth response
 
 Customer -> Store: Click "Proceed payment" 
-Store -> Clutch: Authorisation request 
+Store -> Oracle: Send items to delivery
+
+Oracle -> Oracle: process delivery 
+Oracle -> Clutch: Capture request (UpdateBalanceRequest)
 Clutch -> Clutch: Validate card number, PIN, balance
-Clutch --> Store: Authorisation response
-Store -> Store: Logs transaction
-Store --> Customer: Return authorisation result
+Clutch --> Oracle: Capture  response
 
-Customer -> Store: Add payment method "Bank card" 
-Store -> PSP: Request payment iframe
-PSP --> Store: Provide bank card payment iframe
-Store --> Customer: Provide Bank card payment iframe
+Oracle -> CardConnect: Bank Card capture request
+CardConnect --> Oracle: Bank Card capture response
 
-Customer -> Store: enter bank card data, click "Process"
-Store -> PSP: Request payment authorisation
-PSP -> PSP: Authorise payment
-PSP --> Store: Response payment authorisation
-Store --> Customer: Provide payment authorisation responce
-
-Customer -> Store: Click "Complete payment"
-Store -> Oracle: Process items to delivery (including payment data)
-
-Oracle -> Oracle: Process delivery
-Oracle -> Clutch: GC Capture request
-Clutch -> Clutch: Validate card number, (PIN), balance
-
-Oracle -> PSP: Bank Card Capture request
-
-PSP --> Oracle: Bank Card Capture response
-Clutch --> Oracle: GC Capture  response
-
-Oracle --> Store: Capture responses
-
-Store -> Store: Logs transaction
-Store -> Store: Check and log capture results
-
+Oracle --> Store: Capture response
+Store -> Store: Log Capture result
 @end
-
