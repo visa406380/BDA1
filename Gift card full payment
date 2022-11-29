@@ -11,21 +11,16 @@ Customer -> Store: Enters Gift card number, PIN, clicks "Apply"
 
 Store -> Store: Check card batch 
 
-Store -> Clutch: Check balance request
+Store -> Clutch: Check balance request (SearchRequest)
 Clutch -> Clutch: Validate  balance
 Clutch --> Store: Check balance response
 Store --> Customer: Return remaining balance  
 
 Customer -> Store: Click "Proceed payment" 
-Store -> Clutch: Authorisation request 
-Clutch -> Clutch: Validate card number, PIN, balance
-Clutch --> Store: Authorisation response
-Store --> Customer: Return authorisation result
 
-Customer -> Store: Click "Complete payment"
 Store -> Oracle: Send items to delivery
-Oracle -> Oracle: process delivery
-Oracle -> Clutch: Capture request
+Oracle -> Oracle: process delivery 
+Oracle -> Clutch: Capture request (UpdateBalanceRequest)
 Clutch -> Clutch: Validate card number, PIN, balance
 Clutch --> Oracle: Capture  response
 Oracle --> Store: Capture response
