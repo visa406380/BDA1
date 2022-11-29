@@ -7,17 +7,23 @@ Store -> CardConnect: full amount authorization
 CardConnect --> Store: Response auth request
 
 Store -> CardConnect: Payment completion 
-CardConnect --> Store: Completion request
+CardConnect --> Store: Completion response
 
 == Card order ==
 
 Store -> Oracle: order export with fund captured indicator
+Oracle --> Store: export successfully made
+
 Store -> Blackhawk: card issuing request with amount, address customer name
 
-Blackhawk --> Store: card issuing response
-Oracle --> Store: export successfully made
-Store --> Customer: "GC sent to email" message
+Blackhawk -> Blackhawk: Generates card number and PIN
+Blackhawk -> Clutch: Send card data card number, PIN and nomination amount
+Clutch --> Blackhawk: Card data response
 
 Blackhawk -> Customer: Send email with GC number, PIN
+
+Blackhawk --> Store: card issuing response
+
+Store --> Customer: "GC sent to email" message
 
 @enduml
