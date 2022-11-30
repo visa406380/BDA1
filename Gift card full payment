@@ -7,7 +7,7 @@ Store -> Customer: Redirects Customer to checkout page
 == payment ==
 Customer -> Store: Select "Apply Gift Card
 Store --> Customer: Open "Enter Gift Card" window
-Customer -> Store: Enters Gift card number, PIN, clicks "Apply"
+Customer -> Store: Enters Gift card number, clicks "Apply"
 
 Store -> Store: Check card batch 
 
@@ -18,11 +18,14 @@ Store --> Customer: Return remaining balance
 
 Customer -> Store: Click "Proceed payment" 
 
+Store -> Clutch: Capture request (UpdateBalanceRequest)
+Clutch -> Clutch: Validate card number, balance
+Clutch --> Store: Capture  response
+Store -> Store: Log Capture result
+
 Store -> Oracle: Send items to delivery
 Oracle -> Oracle: process delivery 
-Oracle -> Clutch: Capture request (UpdateBalanceRequest)
-Clutch -> Clutch: Validate card number, PIN, balance
-Clutch --> Oracle: Capture  response
-Oracle --> Store: Capture response
-Store -> Store: Log Capture result
+Oracle --> Store: Goods sent to delivery
+Store --> Customer: Goods sent to delivery
+
 @end
