@@ -24,12 +24,15 @@ Store -> CardConnect: send $0 Auth request
 CardConnect --> Store: Auth response
 
 Customer -> Store: Click "Proceed payment" 
+
+Store-> Clutch: Capture request (UpdateBalanceRequest)
+Clutch -> Clutch: Validate card number, PIN, balance
+Clutch --> Store: Capture  response
+
 Store -> Oracle: Send items to delivery
 
 Oracle -> Oracle: process delivery 
-Oracle -> Clutch: Capture request (UpdateBalanceRequest)
-Clutch -> Clutch: Validate card number, PIN, balance
-Clutch --> Oracle: Capture  response
+
 
 Oracle -> CardConnect: Bank Card capture request
 CardConnect --> Oracle: Bank Card capture response
