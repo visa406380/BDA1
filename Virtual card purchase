@@ -20,7 +20,7 @@ Blackhawk -> Blackhawk: Generates card number and PIN
 Blackhawk -> Clutch: Send card data card number, PIN and nomination amount
 Clutch --> Blackhawk: Card data response
 
-Blackhawk -> Customer: Send email with GC number, PIN
+Blackhawk -> Receiver: Send email with GC number, PIN
 
 Blackhawk --> Store: card issuing response
 
