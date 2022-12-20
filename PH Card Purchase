@@ -22,8 +22,13 @@ Clutch --> Blackhawk: Card data response
 
 Blackhawk --> Store: card issuing response
 
+Blackhawk -> Blackhawk: GiftCard shipping
+Blackhawk -> Reciever: GiftCard and PIN shipping
+Blackhawk -> Store: GiftCard shipping notification
+
+
 Store --> Customer: "GC was shipped" message
 
-Blackhawk -> Customer: Ships Gift card with PIN
+
 
 @enduml
