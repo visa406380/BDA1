@@ -23,6 +23,9 @@ Clutch --> Blackhawk: Card data response
 Blackhawk -> Receiver: Send email with GC number, PIN
 
 Blackhawk --> Store: card issuing response
+Blackhawk -> Store: card mailing notification
+
+Store -> Store: Update order status
 
 Store --> Customer: "GC sent to email" message
 
