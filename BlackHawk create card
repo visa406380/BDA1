@@ -1,0 +1,20 @@
+@startuml
+
+Participant BDA
+Box "BlackHawk"
+Participant BlackHawk_Order_Fulfillment
+Participant BlackHawk_Mngmt_Fulfillment
+end Box
+
+===Create Card===
+BDA -> BlackHawk_Order_Fulfillment: CreateFulfillmentOrder
+BlackHawk_Order_Fulfillment --> BDA: fulfillmentOrderID
+
+===Card Status Change Callback===
+
+BlackHawk_Mngmt_Fulfillment -> BDA: Order Confirmation Notification
+BlackHawk_Mngmt_Fulfillment -> BDA: Order Item Notification (referenceID)
+BlackHawk_Mngmt_Fulfillment -> BDA: Order Shipping Notification (list of items)
+
+
+@enduml
